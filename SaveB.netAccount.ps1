@@ -1,11 +1,8 @@
 #Requires -Modules CredentialManager
 
-param(
-    [Parameter(Mandatory=$true)]
-    [string]$Account,
-
-    [Parameter(Mandatory=$true)]
-    [string]$EmailAddress
+ param(
+    [Parameter(Mandatory = $true)][string]$Account,
+    [Parameter(Mandatory = $true)][string]$EmailAddress
 )
 
 Import-Module CredentialManager

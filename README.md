@@ -2,13 +2,17 @@
 
 [SaveB.netAccount.ps1][SaveB.netAccount.ps1] saves accounts used by LaunchD2R.ps1 into the Windows Credential Manager.
 
-[LaunchD2R.ps1][LaunchD2R.ps1] launches D2R passing in credentials skipping the Battle.net Launcher. 
+[LaunchD2R.ps1][LaunchD2R.ps1] launches D2R passing in credentials skipping the Battle.net Launcher.
 
 If you want to launch multiple copies of D2R, you will need to kill the Multiple Instance handle after each launch. More infomation can be found here: https://github.com/sir-wilhelm/d2r-handle-closer
 
 ## How to run
 
-Download the two PowerShell scripts and then run [SaveB.netAccount.ps1][SaveB.netAccount.ps1] for each b.net account you have.
+Download the two PowerShell scripts and then run [SaveB.netAccount.ps1][SaveB.netAccount.ps1] for each b.net account you have. If you don't have the TUN.CredentialManager PowerShell module installed it can be installed with:
+
+```PowerShell
+Install-Module -Name TUN.CredentialManager -Force
+```
 
 Then use [LaunchD2R.ps1][LaunchD2R.ps1] passing in the same Account name you used while saving credentials.
 

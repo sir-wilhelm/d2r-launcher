@@ -1,4 +1,4 @@
-#Requires -Modules CredentialManager
+#Requires -Modules TUN.CredentialManager
 
 param(
     [Parameter(Mandatory = $true)]
@@ -10,8 +10,6 @@ param(
     [ValidateSet("1", "2", "3", "4", "5")]
     [string]$ClientNumber = "2"
 )
-
-Import-Module CredentialManager
 
 $credential = Get-StoredCredential -Target "b.net/$Account"
 if (!$credential) {

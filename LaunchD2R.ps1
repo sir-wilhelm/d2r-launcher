@@ -20,7 +20,7 @@ if (!$credential) {
 $d2rPath = "D:\Battle.net\Diablo II Resurrected - $ClientNumber"
 
 if ($LaunchMode -eq "direct") {
-    & "$d2rPath\D2R.exe" -address "$Region.actual.battle.net" -username $credential.UserName -password $credential.GetNetworkCredential().Password
+    & "$d2rPath\D2R.exe" -address "$Region.actual.battle.net" -username $credential.UserName -password $credential.GetNetworkCredential().Password -nosound
 }
 else {
     & "$d2rPath\Diablo II Resurrected Launcher.exe"

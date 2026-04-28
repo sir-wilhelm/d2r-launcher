@@ -5,6 +5,7 @@ param (
     [int]$Y,
     [int]$Width,
     [int]$Height,
+    [string]$Title,
     [switch]$PassThru
 )
 
@@ -30,6 +31,11 @@ catch {
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool ShowWindow(
                 IntPtr handle, int state);
+
+            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool SetWindowText(
+                IntPtr hWnd, string lpString);
             }
             public struct RECT
             {
@@ -68,6 +74,9 @@ if (-NOT $PSBoundParameters.ContainsKey('Height')) {
 }
 if ($gotWindow) {
     [Window]::MoveWindow($handle, $x, $y, $Width, $Height, $True) | Out-Null
+}
+if ($PSBoundParameters.ContainsKey('Title')) {
+    [Window]::SetWindowText($handle, $Title) | Out-Null
 }
 if ($PSBoundParameters['Passthru']) {
     $rectangle = New-Object RECT

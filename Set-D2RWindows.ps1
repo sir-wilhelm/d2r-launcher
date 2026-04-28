@@ -7,10 +7,9 @@ Function Split-AcrossMultiMonitors {
     foreach ($d2rProcess in $d2rProcesses) {
         if ($d2rProcess.Path -match "(?<clientNum>\d+)") {
             switch ($matches["clientNum"]) {
-                1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y   0 -Verbose:$Verbose -PassThru:$PassThru } #top left
-                # ^v swapped for hammer on p1 chaos
-                2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y 557 -Verbose:$Verbose -PassThru:$PassThru } # main (bottom right)
-                3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y 606 -Verbose:$Verbose -PassThru:$PassThru } #bottom left
+                1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y 557 -Verbose:$Verbose -PassThru:$PassThru } # main (bottom right)
+                2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y 606 -Verbose:$Verbose -PassThru:$PassThru } #bottom left
+                3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y   0 -Verbose:$Verbose -PassThru:$PassThru } #top left
                 4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y   0 -Verbose:$Verbose -PassThru:$PassThru } #top right
                 5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y 606 -Verbose:$Verbose -PassThru:$PassThru } #bottom right
                 6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y   0 -Verbose:$Verbose -PassThru:$PassThru } # main (top right)

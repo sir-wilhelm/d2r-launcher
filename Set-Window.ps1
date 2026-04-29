@@ -14,36 +14,32 @@ try {
 }
 catch {
     Add-Type @"
-            using System;
-            using System.Runtime.InteropServices;
-            public class Window {
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetWindowRect(
-                IntPtr hWnd, out RECT lpRect);
+using System;
+using System.Runtime.InteropServices;
+public class Window {
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public extern static bool MoveWindow(
-                IntPtr handle, int x, int y, int width, int height, bool redraw);
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public extern static bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
 
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool ShowWindow(
-                IntPtr handle, int state);
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool ShowWindow(IntPtr handle, int state);
 
-            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool SetWindowText(
-                IntPtr hWnd, string lpString);
-            }
-            public struct RECT
-            {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
-            }
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool SetWindowText(IntPtr hWnd, string lpString);
+}
+public struct RECT
+{
+    public int Left;        // x position of upper-left corner
+    public int Top;         // y position of upper-left corner
+    public int Right;       // x position of lower-right corner
+    public int Bottom;      // y position of lower-right corner
+}
 "@
 }
 

@@ -12,16 +12,16 @@ Function Split-AcrossMultiMonitors {
             $realm = $matches["realm"]
             $title = "Diablo II: Resurrected"
             switch ($clientNum) {
-                1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y 557 -Title "$clientNum - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (bottom right)
-                2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y 606 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } #bottom left
-                3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y   0 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } #top left
-                4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y   0 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } #top right
-                5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y 606 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } #bottom right
-                6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y   0 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (top right)
-                7 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X   -9 -Y   0 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (top left)
-                8 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X   -9 -Y 557 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (bottom left)
-                9 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3190 -Y 275 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } #center
-                0 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  630 -Y 299 -Title "$clientNum - $realm - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (center)
+                1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y 557 -Title "$clientNum - Pyro - $title"                 -Verbose:$Verbose -PassThru:$PassThru } # main (bottom right)
+                2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y 606 -Title "$clientNum - $realm - PyroKnight - $title"  -Verbose:$Verbose -PassThru:$PassThru } #bottom left
+                3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2551 -Y   0 -Title "$clientNum - $realm - PyroAlt - $title"     -Verbose:$Verbose -PassThru:$PassThru } #top left
+                4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y   0 -Title "$clientNum - $realm - BabyJay - $title"     -Verbose:$Verbose -PassThru:$PassThru } #top right
+                5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3830 -Y 606 -Title "$clientNum - $realm - Pyromancer - $title"  -Verbose:$Verbose -PassThru:$PassThru } #bottom right
+                6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1270 -Y   0 -Title "$clientNum - $realm - Pyyromaniac - $title" -Verbose:$Verbose -PassThru:$PassThru } # main (top right)
+                7 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X   -9 -Y   0 -Title "$clientNum - $realm - Pyromania - $title"   -Verbose:$Verbose -PassThru:$PassThru } # main (top left)
+                8 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X   -9 -Y 557 -Title "$clientNum - $realm - Firebug - $title"     -Verbose:$Verbose -PassThru:$PassThru } # main (bottom left)
+                9 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 3190 -Y 275 -Title "$clientNum - $realm - $title"               -Verbose:$Verbose -PassThru:$PassThru } #center
+                0 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  630 -Y 299 -Title "$clientNum - $realm - $title"               -Verbose:$Verbose -PassThru:$PassThru } # main (center)
             }
         }
     }
@@ -34,7 +34,24 @@ Split-AcrossMultiMonitors
 
 return
 
-$d2rProcesses = Get-Process D2r | Sort-Object -Property Path
+    # ultrawide - 3400x1440 w/ d2r at 1280x800
+    foreach ($d2rProcess in $d2rProcesses) {
+        if ($d2rProcess.CommandLine -match "(?<clientNum>\d+)(?:.*-address (?<realm>\w+))?") {
+            $clientNum = $matches["clientNum"]
+            $realm = $matches["realm"]
+            $title = "Diablo II: Resurrected"
+            switch ($matches["clientNum"]) {
+                3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  -10 -Y   0 -Title "$clientNum - Pyro - $title"                 -Verbose:$Verbose -PassThru:$PassThru } # top left
+                2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1070 -Y   0 -Title "$clientNum - $realm - PyroKnight - $title"  -Verbose:$Verbose -PassThru:$PassThru } # top center
+                1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1070 -Y 558 -Title "$clientNum - $realm - PyroAlt - $title"     -Verbose:$Verbose -PassThru:$PassThru } # bottom center
+                4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2150 -Y   0 -Title "$clientNum - $realm - BabyJay - $title"     -Verbose:$Verbose -PassThru:$PassThru } # top right
+                5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  -10 -Y 558 -Title "$clientNum - $realm - Pyromancer - $title"  -Verbose:$Verbose -PassThru:$PassThru } # bottom left
+                6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2150 -Y 558 -Title "$clientNum - $realm - Pyyromaniac - $title" -Verbose:$Verbose -PassThru:$PassThru } # bottom right
+                7 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  265 -Y 263 -Title "$clientNum - $realm - Pyromania - $title"   -Verbose:$Verbose -PassThru:$PassThru } # center left
+                8 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1875 -Y 263 -Title "$clientNum - $realm - Firebug - $title"     -Verbose:$Verbose -PassThru:$PassThru } # center right
+            }
+        }
+    }
 
 # 2x 2560x1440 w/ d2r at 1280x800 - use right monitor mostly
 foreach ($d2rProcess in $d2rProcesses) {
@@ -62,22 +79,6 @@ foreach ($d2rProcess in $d2rProcesses) {
             3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 123 -Verbose:$Verbose -PassThru:$PassThru }
             4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2860 -Y 210 -Verbose:$Verbose -PassThru:$PassThru }
             5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2700 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
-            #6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
-            #7 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
-            #8 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
-        }
-    }
-}
-
-# ultrawide - 3400x1440 w/ d2r at 1280x800
-foreach ($d2rProcess in $d2rProcesses) {
-    if ($d2rProcess.Path -match "(?<clientNum>\d+)") {
-        switch ($matches["clientNum"]) {
-            1 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  -10 -Y   0 -Verbose:$Verbose -PassThru:$PassThru }
-            2 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1070 -Y   0 -Verbose:$Verbose -PassThru:$PassThru }
-            3 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 1070 -Y 558 -Verbose:$Verbose -PassThru:$PassThru }
-            4 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X 2150 -Y   0 -Verbose:$Verbose -PassThru:$PassThru }
-            5 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
             #6 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
             #7 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }
             #8 { & "$PSScriptRoot\Set-Window.ps1" -Id $d2rProcess.Id -X  310 -Y 310 -Verbose:$Verbose -PassThru:$PassThru }

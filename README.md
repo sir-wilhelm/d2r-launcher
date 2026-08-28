@@ -26,5 +26,5 @@ Notes:
 
 [MIT License](/LICENSE)
 
-[LaunchD2R.ps1]: /LaunchD2R.ps1?raw=1
-[SaveB.netAccount.ps1]: /SaveB.netAccount.ps1?raw=1
+[LaunchD2R.ps1]: /LaunchD2R.ps1
+[SaveB.netAccount.ps1]: /SaveB.netAccount.ps1

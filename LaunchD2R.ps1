@@ -8,7 +8,9 @@ param(
     [ValidateSet("eu", "us", "kr")]
     [string]$Region = "us",
     [ValidateSet("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
-    [string]$ClientNumber = "2"
+    [string]$ClientNumber = "2",
+    [ValidateSet("main", "partial")]
+    [string]$Mod
 )
 
 $credential = Get-StoredCredential -Target "b.net/$Account"
@@ -19,8 +21,14 @@ if (!$credential) {
 
 $d2rPath = "D:\Battle.net\Diablo II Resurrected - $ClientNumber"
 
+$modArg = switch ($Mod) {
+    "main" { 'lowHDmain' }
+    "partial" { 'lowHDpartial' }
+    default { '' }
+}
+
 if ($LaunchMode -eq "direct") {
-    & "$d2rPath\D2R.exe" -address "$Region.actual.battle.net" -username $credential.UserName -password $credential.GetNetworkCredential().Password -nosound
+    & "$d2rPath\D2R.exe" -address "$Region.actual.battle.net" -username $credential.UserName -password $credential.GetNetworkCredential().Password -nosound -mod "$modArg" -txt
 }
 else {
     & "$d2rPath\Diablo II Resurrected Launcher.exe"
